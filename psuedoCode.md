@@ -41,3 +41,8 @@ Start Game(New Game Button)
 
 Click Start -> Show Question panel with clickable answer buttons
 Click Answer -> Check if content matches, correct answer, store result. Hide question panel and show results Panel, increments round. if round is less than 10, execute new round function after delay timer. If greater than to execute game over function.
+
+
+
+
+

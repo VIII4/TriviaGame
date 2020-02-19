@@ -1,14 +1,9 @@
 //#region HTML
-////HTML Element
 
-//Timer Element
 var timerElement;
-
-//Question Panel
 var questionPanel;
-//Displays question
 var questionElement;
-//Clickable Button that displays answer for question
+//Clickable Buttons
 var answerAElement;
 var answerBElement;
 var answerCElement;
@@ -60,19 +55,36 @@ var currentQuestions;
 //Question Object Construct
 function QuestionObject(
   _question,
-  _answerA,
-  _answerB,
-  _answerC,
-  _answerD,
+  _correctAnswer,
+  _wrongAnswerA,
+  _wrongAnswerB,
+  _wrongAnswerC,
   _img
 ) {
+  //Store Question, Correct Answer and All Answers in Container
   this.question = _question;
-  this.answerA = _answerA;
-  this.answerB = _answerB;
-  this.answerC = _answerC;
-  this.answerD = _answerD;
-  this.correctAnswer = "";
-  this.result = 0;
+  this.correctAnswer = _answerA;
+  this.result = "";
+  this.allAnswers = [
+    _correctAnswer,
+    _wrongAnswerA,
+    _wrongAnswerB,
+    _wrongAnswerC
+  ];
+
+  this.randomizeAnswers = function() {
+    var temp = [];
+    var selectedAnswers = [];
+    for (i = 0; i < 4; i++) {
+      var random = Math.floor(Math.random() * 4);
+      if (!selectedAnswers.includes(random)) {
+        selectedAnswers.push(random);
+        temp.push(allAnswers[random]);
+      }
+    }
+
+    this.allAnswers = temp;
+  };
 }
 
 //TO DO: Create ALL question objects here
@@ -110,7 +122,7 @@ var generateQuestions = function() {
 var newRound = function() {
   //
   if (currentRound < 10) {
-    //TO DO: Load Question equal to round number and answers into elements
+    //TO DO: Load Question equal to round number, randomize answers then Load and answers into elements
     //TO DO: Show Question Panel
     currentRound++;
     //TO DO: Start Round Timer
