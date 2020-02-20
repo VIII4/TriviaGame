@@ -20,14 +20,16 @@ var solutionImage;
 
 //Game Over Panel
 var gameOverPanel;
+//Game Start Panel
+var gameStartPanel;
 //Score Element
 var scoreElement;
 //Correct Value
-var correctElement;
+var correctValueElement;
 //Incorrect Value
-var incorrectElement;
+var incorrectValueElement;
 //Unanswered Value
-var unanswered;
+var unansweredValueElement;
 //#endregion
 
 //#region Global Var
@@ -92,6 +94,13 @@ function QuestionObject(
 //#endregion
 
 //#region Methods
+var getElements = function() {
+  gameStartPanel = $("#gameStartPanel");
+  questionPanel = $("#questionPanel");
+  resultsPanel = $("#resultsPanel");
+  gameOverPanel = $("#gameOverPanel");
+};
+
 var score = function(_selectedQuestions) {
   var tally = 0;
   for (i = 0; i < selectedQuestions.length; i++) {
@@ -151,12 +160,21 @@ var gameOver = function() {
   //TO DO: Show Game Over Panel
 };
 
+var debugTest = function() {
+  gameStartPanel.hide();
+  //questionPanel.show();
+  //resultsPanel.show();
+  gameOverPanel.show();
+};
+
 //TO DO: EndRound Method that recieves string from Button Click, or unaswered if timer expires, Starts queue timer to run StartRound method
 
 //#endregion
 
 $(document).ready(function() {
+  getElements();
   setGame();
+  debugTest();
 
   ////Button Clicks
   //TO DO: Add Start Game Button
