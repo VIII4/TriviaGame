@@ -8,6 +8,7 @@ var answerAElement;
 var answerBElement;
 var answerCElement;
 var answerDElement;
+var gameStartButton;
 
 //Round Result Panel
 var resultsPanel;
@@ -35,14 +36,17 @@ var unansweredValueElement;
 //#region Global Var
 
 var currentRound = 0;
+var maxRounds = 2;
+var totalCorrect = 0;
+var totalIncorrect = 0;
+var totalUnanswered = 0;
 
 var roundTime = 0;
-
+var roundTimeInteravl;
 var queueTime = 0;
+var queueTimeInterval;
 
-var allQuesions = [
-  /*TO DO: add all question objects here*/
-];
+var allQuestions = [];
 
 var selectedQuestions = [];
 
@@ -53,6 +57,13 @@ var currentQuestions;
 //#endregion
 
 //#region Objects
+
+//Results Object
+var roundResult = {
+  unanswered: "Ran out of time",
+  correct: "Nice Work",
+  incorrect: "Nope"
+};
 
 //Question Object Construct
 function QuestionObject(
@@ -65,7 +76,7 @@ function QuestionObject(
 ) {
   //Store Question, Correct Answer and All Answers in Container
   this.question = _question;
-  this.correctAnswer = _answerA;
+  this.correctAnswer = _correctAnswer;
   this.result = "";
   this.allAnswers = [
     _correctAnswer,
@@ -74,6 +85,8 @@ function QuestionObject(
     _wrongAnswerC
   ];
 
+  this.image = _img;
+
   this.randomizeAnswers = function() {
     var temp = [];
     var selectedAnswers = [];
@@ -81,7 +94,9 @@ function QuestionObject(
       var random = Math.floor(Math.random() * 4);
       if (!selectedAnswers.includes(random)) {
         selectedAnswers.push(random);
-        temp.push(allAnswers[random]);
+        temp.push(this.allAnswers[random]);
+      } else {
+        i--;
       }
     }
 
@@ -91,14 +106,58 @@ function QuestionObject(
 
 //TO DO: Create ALL question objects here
 
+var templateQuestion = new QuestionObject(
+  " Question",
+  " Correct Answer",
+  " Option 2",
+  " Otions 3",
+  " Option 4",
+  "assets/images/test.jpg"
+);
+
+var templateQuestion2 = new QuestionObject(
+  " Question2",
+  " Correct Answer2",
+  " Option 22",
+  " Otions 32",
+  " Option 42",
+  "assets/images/hello.png"
+);
+
+//TO DO: Store all question here
+allQuestions = [templateQuestion, templateQuestion2];
+
 //#endregion
 
 //#region Methods
+
 var getElements = function() {
+  //Panels
   gameStartPanel = $("#gameStartPanel");
   questionPanel = $("#questionPanel");
   resultsPanel = $("#resultsPanel");
   gameOverPanel = $("#gameOverPanel");
+
+  //Timer
+  timerElement = $("#roundTimer");
+
+  //Image
+  solutionImage = $("solutionImage");
+
+  //Text Displays/Buttons
+  gameStartButton = $("#gameStartButton");
+  questionElement = $("#questionElement");
+  answerAElement = $("#answerAElement");
+  answerBElement = $("#answerBElement");
+  answerCElement = $("#answerCElement");
+  answerDElement = $("#answerDElement");
+  resultElement = $("#resultElement");
+  solutionElement = $("#solutionElement");
+  solutionImage = $("#solutionImage");
+  scoreElement = $("#scoreElement");
+  correctValueElement = $("#correctValueElement");
+  incorrectValueElement = $("#incorrectValueElement");
+  unansweredValueElement = $("#unansweredValueElement");
 };
 
 var score = function(_selectedQuestions) {
@@ -111,7 +170,7 @@ var score = function(_selectedQuestions) {
 var setGame = function() {
   selectedQuestions = [];
   currentRound = 0;
-  roundTime = 45;
+  roundTime = 30;
   generateQuestions();
   console.log("Game (re)Set");
 };
@@ -119,52 +178,101 @@ var setGame = function() {
 var generateQuestions = function() {
   var _selectedIndex = [];
   for (i = 0; i < 10; i++) {
-    var random = Math.floor(Math.random() * 30);
+    var random = Math.floor(Math.random() * allQuestions.length);
     if (!_selectedIndex.includes(random)) {
-      //selectedQuestions.push(allQuesions[random]);
+      selectedQuestions.push(allQuestions[random]);
       _selectedIndex.push(random);
-      console.log(_selectedIndex);
+    } else {
+      //i--;
     }
   }
+  console.log(selectedQuestions);
 };
 
 var newRound = function() {
-  //
-  if (currentRound < 10) {
-    //TO DO: Load Question equal to round number, randomize answers then Load and answers into elements
-    //TO DO: Show Question Panel
-    currentRound++;
-    //TO DO: Start Round Timer
-  }
-  //
-  else {
-    //TO DO: Game Over
-  }
+  //Load Question equal to round number, randomize answers then Load and answers into elements
+  currentQuestions = selectedQuestions[currentRound];
+  currentQuestions.randomizeAnswers();
+
+  questionElement.text(currentQuestions.question);
+  answerAElement.text(currentQuestions.allAnswers[0]);
+  answerBElement.text(currentQuestions.allAnswers[1]);
+  answerCElement.text(currentQuestions.allAnswers[2]);
+  answerDElement.text(currentQuestions.allAnswers[3]);
+
+  //Show Question Panel, hide other panels
+  gameStartPanel.hide();
+  resultsPanel.hide();
+  gameOverPanel.hide();
+  questionPanel.show();
+
+  //TO DO: Start Round Timer
+  roundTimeInteravl = setInterval(roundCounter, 1000);
 };
 
 var endRound = function(_result) {
-  //
-  //TO DO: Clear Round Timer, Reset Round timer to 45
-  //TO DO: Check if Result is Correct Answer or unanswered, set result on question object
-  //TO DO: Hide Question Panel
-  //TO DO: Load result and img into ELements
+  var result;
+  //Clear Round Timer, Reset Round timer to 30 and display
+  resetRoundTimer();
+  //Check if Result is Correct Answer or unanswered, set result on question object
+  if (_result === "unanswered") {
+    totalUnanswered++;
+    result = roundResult.unanswered;
+  } else {
+    if (currentQuestions.correctAnswer === _result) {
+      totalCorrect++;
+      result = roundResult.correct;
+    } else {
+      totalIncorrect++;
+      result = roundResult.incorrect;
+    }
+  }
+
+  //Hide Question Panel
+  questionPanel.hide();
+  //Load result and img into ELements
+  resultElement.text(result);
+  solutionElement.text(
+    "The Correct Answer was " + currentQuestions.correctAnswer
+  );
+  solutionImage.attr("src", currentQuestions.image);
+
   //TO DO: Show Results Panel
-  //TO DO: Start Queue Timer(newRound after timer expires)
+  resultsPanel.show();
+  //TO DO: Start Queue Timer(newRound after timer expires, or game over)
+  currentRound++;
+  if (currentRound < maxRounds) {
+    queueTimeInterval = setTimeout(newRound, 7000);
+  } else {
+    console.log("gameOver");
+    queueTimeInterval = setTimeout(gameOver, 3000);
+  }
 };
 
 var gameOver = function() {
   //
-  //TO DO: Hide Questions Panel
-  //TO DO: Get Results from questions
+  //TO DO: Hide Round Result Panel
+  resultsPanel.hide();
+  gameOverPanel.show();
+
+  //TO DO: Get Score
+  var finalScore = (totalCorrect / maxRounds) * 100;
+
   //TO DO: Load Game results to elements (incorrect, Correct, unanswered, and final percentage)
-  //TO DO: Show Game Over Panel
+  scoreElement.text(finalScore + "%");
+  correctValueElement.text("Number of Correct: " + totalCorrect);
+  incorrectValueElement.text("Number of Incorrect: " + totalIncorrect);
+  unansweredValueElement.text("Number of Unanswered: " + totalUnanswered);
+
+  //TO DO: Reset Game
+  setGame();
 };
 
 var debugTest = function() {
-  gameStartPanel.hide();
+  //gameStartPanel.hide();
   //questionPanel.show();
   //resultsPanel.show();
-  gameOverPanel.show();
+  //gameOverPanel.show();
 };
 
 //TO DO: EndRound Method that recieves string from Button Click, or unaswered if timer expires, Starts queue timer to run StartRound method
@@ -174,29 +282,49 @@ var debugTest = function() {
 $(document).ready(function() {
   getElements();
   setGame();
-  debugTest();
 
   ////Button Clicks
   //TO DO: Add Start Game Button
+  gameStartButton.on("click", newRound);
 
-  //TO DO: Add Answer A Button
-  //TO DO: Add Answer B Button
-  //TO DO: Add Answer C Button
-  //TO DO: Add Answer D Button
+  //TO DO: Add Answer Buttons
+  // answerAElement.on("click", endRound /* add Function Here */);
+  // answerBElement.on("click", endRound /* add Function Here */);
+  // answerCElement.on("click", endRound /* add Function Here */);
+  // answerDElement.on("click", endRound /* add Function Here */);
 
-  //TO DO: Add New Game Button
+  answerAElement.on("click", function() {
+    endRound(answerAElement.text());
+  });
+  answerBElement.on("click", function() {
+    endRound(answerBElement.text());
+  });
+  answerCElement.on("click", function() {
+    endRound(answerCElement.text());
+  });
+  answerDElement.on("click", function() {
+    endRound(answerDElement.text());
+  });
+
+  $("#gameOverButton").on("click", newRound);
 });
 
 //#region
 
 /////
 
-//Counter for Round
-function RoundCounter() {
+//T
+function resetRoundTimer() {
+  clearInterval(roundTimeInteravl);
+  roundTime = 30;
+  timerElement.text("00:30");
+}
+
+function roundCounter() {
   //Timer is zero or below
   if (roundTime <= 0) {
-    //clearInterval()
     //End Round(Run RoundCheck Method with unanswered parameter)
+    endRound("unanswered");
   }
   //Timer not Expired
   else {
@@ -205,7 +333,7 @@ function RoundCounter() {
     console.log(" count function" + displayTime);
 
     //Display Time
-    //$("#display").html(displayTime);
+    timerElement.text(displayTime);
   }
 }
 
