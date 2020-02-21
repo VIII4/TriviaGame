@@ -1,0 +1,40 @@
+body,
+html {
+  height: 100%;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.342);
+}
+
+.bg {
+  background-image: url(../images/weppage/SciTechBackground.png);
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.panel {
+  background-color: rgba(0, 26, 75, 0.5);
+}
+.exodarFont {
+  font-family: "exodar-outlineregular";
+
+  color: rgb(255, 255, 255);
+}
+
+.resultImage {
+  height: 350px;
+  width: 350px;
+}
+
+.white {
+  color: white;
+}

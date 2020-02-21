@@ -37,16 +37,16 @@ var unansweredValueElement;
 //#region Global Var
 
 var currentRound = 0;
-var maxRounds = 5; //Max Rounds(Questions) per Game, Adust if Needed
+var maxRounds = 10; //Max Rounds(Questions) per Game, Adust if Needed
 var totalCorrect = 0;
 var totalIncorrect = 0;
 var totalUnanswered = 0;
 
 var roundTime = 0;
-var timePerRound = 30; //Time to answer questino, Adust if Needed
+var timePerRound = 10; //Time to answer question, Adust if Needed
 var roundTimeInteravl;
 var queueTime = 0;
-var timeBetweenRound = 5; //Time delay to start next round, Adjust if Needed
+var timeBetweenRound = 3000; //Time delay to start next round, Adjust if Needed
 var queueTimeInterval;
 
 //All Questions Container
@@ -462,7 +462,7 @@ allQuestions = [
 function resetRoundTimer() {
   clearInterval(roundTimeInteravl);
   roundTime = timePerRound;
-  timerElement.text("00:30");
+  timerElement.text("00:" + timePerRound);
 }
 
 function roundCounter() {
@@ -554,7 +554,7 @@ var generateQuestions = function() {
       selectedQuestions.push(allQuestions[random]);
       _selectedIndex.push(random);
     } else {
-      //i--;
+      i--;
     }
   }
   console.log(selectedQuestions);

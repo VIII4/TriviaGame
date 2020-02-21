@@ -16,6 +16,7 @@
     <!-- Google Font -->
 
     <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/customefontstylesheet.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <!-- jquery -->
@@ -26,138 +27,156 @@
   </head>
 
   <body>
-    <div class="container bg-success">
-      <div class="row p-3 bg-primary"></div>
-      <div class="row p-3 bg-secondary">
-        <div class="col"></div>
-        <div id="wrapper" class="col-8 p-1 bg-success">
-          <div class="row">
-            <div class="col">
-              <h1 id="gameTitle" class="text-center">Trivia Game</h1>
-            </div>
+    <div class="bg">
+      <header>
+        <div class="row mb-2 p-3">
+          <div class="col"></div>
+          <div class="col-4 border border-light rounded white">
+            <h1 id="gameTitle" class="text-center exodarFont">
+              Sci-Fi Trivia Game
+            </h1>
           </div>
-          <div class="row">
-            <div class="col">
-              <h3 id="roundTimer" class="text-center">00:30</h3>
+          <div class="col"></div>
+        </div>
+      </header>
+      <div class="container">
+        <div class="row">
+          <div class="col "></div>
+          <div
+            id="wrapper"
+            class="col-8 p-1 bg-transparent border border-light rounded white"
+          >
+            <div class="row">
+              <div class="col"></div>
             </div>
-          </div>
-          <!-- ALL GAME PANELS HERE -->
-          <!-- Start -->
-          <div id="gameStartPanel" class="container bg-warning p-5">
-            <div class="row align-items-center justify-content-center">
-              <div class="col align-center">
-                <h5 id="introText" class="text-center">
-                  Welcome to XXX Trivia! 10 question's, 30 seconds to answer
-                  each one. Click Button Below to start, GOOD LUCK!
-                </h5>
+            <div class="row">
+              <div class="col"></div>
+              <div
+                class="col-4 col-lg-2 timerContainer border border-light rounded my-1"
+              >
+                <h3 id="roundTimer" class="text-center white">
+                  00:10
+                </h3>
+              </div>
+              <div class="col"></div>
+            </div>
+            <!-- ALL GAME PANELS HERE -->
+            <!-- Start -->
+            <div id="gameStartPanel" class="container p-5 panel">
+              <div class="row align-items-center justify-content-center">
+                <div class="col align-center">
+                  <h5 id="introText" class="text-center exodarFont">
+                    10 questions with 10 seconds to answer each one. Click
+                    Button Below to start, GOOD LUCK!
+                  </h5>
+                  <img
+                    src="assets/images/test.jpg"
+                    id="introImage"
+                    class="img-fluid mx-auto my-2 d-block "
+                    alt="Responsive image"
+                  />
+                  <button
+                    id="gameStartButton"
+                    type="button"
+                    class="btn btn-outline-success btn-lg btn-block exodarFont"
+                  >
+                    Start Game
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Round/Question -->
+            <div
+              id="questionPanel"
+              class="container p-4 panel"
+              style="display: none;"
+            >
+              <div class="row justify-content-center">
+                <h3 id="questionElement">What?</h3>
+                <!-- Response Buttons -->
+                <button
+                  type="button"
+                  id="answerAElement"
+                  class="btn btn-outline-secondary btn-lg btn-block"
+                >
+                  Answer A
+                </button>
+                <button
+                  type="button"
+                  id="answerBElement"
+                  class="btn btn-outline-secondary btn-lg btn-block"
+                >
+                  Answer B
+                </button>
+                <button
+                  type="button"
+                  id="answerCElement"
+                  class="btn btn-outline-secondary btn-lg btn-block"
+                >
+                  Answer C
+                </button>
+                <button
+                  type="button"
+                  id="answerDElement"
+                  class="btn btn-outline-secondary btn-lg btn-block"
+                >
+                  Answer D
+                </button>
+              </div>
+            </div>
+            <!-- Round Result -->
+            <div
+              id="resultsPanel"
+              class="container p-5 panel"
+              style="display: none;"
+            >
+              <div class="row align-items-center justify-content-center">
+                <h3 id="resultElement">Good Job!</h3>
+                <b></b>
+                <h4 id="solutionElement">The Correct Answer was:</h4>
                 <img
                   src="assets/images/test.jpg"
-                  id="introImage"
-                  class="img-fluid mx-auto my-2 d-block "
+                  id="solutionImage"
+                  class="img-fluid resultImage mt-3 mb-1"
                   alt="Responsive image"
                 />
-                <button
-                  id="gameStartButton"
-                  type="button"
-                  class="btn btn-outline-success btn-lg btn-block"
-                >
-                  Start Game
-                </button>
               </div>
             </div>
-          </div>
-          <!-- Round/Question -->
-          <div
-            id="questionPanel"
-            class="container bg-danger p-4"
-            style="display: none;"
-          >
-            <div class="row justify-content-center">
-              <h3 id="questionElement">What?</h3>
-              <!-- Response Buttons -->
-              <button
-                type="button"
-                id="answerAElement"
-                class="btn btn-outline-secondary btn-lg btn-block"
-              >
-                Answer A
-              </button>
-              <button
-                type="button"
-                id="answerBElement"
-                class="btn btn-outline-secondary btn-lg btn-block"
-              >
-                Answer B
-              </button>
-              <button
-                type="button"
-                id="answerCElement"
-                class="btn btn-outline-secondary btn-lg btn-block"
-              >
-                Answer C
-              </button>
-              <button
-                type="button"
-                id="answerDElement"
-                class="btn btn-outline-secondary btn-lg btn-block"
-              >
-                Answer D
-              </button>
-            </div>
-          </div>
-          <!-- Round Result -->
-          <div
-            id="resultsPanel"
-            class="container bg-warning p-5 "
-            style="display: none;"
-          >
-            <div class="row align-items-center justify-content-center">
-              <h3 id="resultElement">Good Job!</h3>
-              <b></b>
-              <h4 id="solutionElement">The Correct Answer was:</h4>
-              <img
-                src="assets/images/test.jpg"
-                id="solutionImage"
-                class="img-fluid"
-                alt="Responsive image"
-              />
-            </div>
-          </div>
-          <!-- Game Over -->
-          <div
-            id="gameOverPanel"
-            class="container bg-light p-4"
-            style="display: none;"
-          >
-            <div class="row justify-content-center">
-              <div class="col align-center">
-                <h3 class="text-center">All Done, Here is Your Result</h3>
-                <h1 id="scoreElement" class="text-center">98%</h1>
-                <h4 id="correctValueElement" class="text-center">
-                  Number of Correct:
-                </h4>
-                <h4 id="incorrectValueElement" class="text-center">
-                  Number of Incorrect:
-                </h4>
-                <h4 id="unansweredValueElement" class="text-center">
-                  Number Unanswered:
-                </h4>
-                <button
-                  type="button"
-                  id="gameOverButton"
-                  class="btn btn-outline-success btn-lg btn-block"
-                >
-                  New Game
-                </button>
+            <!-- Game Over -->
+            <div
+              id="gameOverPanel"
+              class="container p-4 panel"
+              style="display: none;"
+            >
+              <div class="row justify-content-center">
+                <div class="col align-center">
+                  <h3 class="text-center">All Done, Here is Your Result</h3>
+                  <h1 id="scoreElement" class="text-center">98%</h1>
+                  <h4 id="correctValueElement" class="text-center">
+                    Number of Correct:
+                  </h4>
+                  <h4 id="incorrectValueElement" class="text-center">
+                    Number of Incorrect:
+                  </h4>
+                  <h4 id="unansweredValueElement" class="text-center">
+                    Number Unanswered:
+                  </h4>
+                  <button
+                    type="button"
+                    id="gameOverButton"
+                    class="btn btn-outline-success btn-lg btn-block"
+                  >
+                    New Game
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- END GAME PANELS -->
+            <!-- END GAME PANELS -->
+          </div>
+          <div class="col"></div>
         </div>
-        <div class="col"></div>
       </div>
-      <div class="row p-3 bg-primary"></div>
     </div>
   </body>
 </html>
