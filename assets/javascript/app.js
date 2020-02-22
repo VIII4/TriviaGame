@@ -577,6 +577,9 @@ var newRound = function() {
   gameOverPanel.hide();
   questionPanel.show();
 
+  //clear result image
+  solutionImage.attr("src", "");
+
   //Start Round Timer
   roundTimeInteravl = setInterval(roundCounter, 1000);
 };
