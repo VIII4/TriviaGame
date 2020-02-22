@@ -1,6 +1,7 @@
 //#region HTML
 
 var timerElement;
+var timerContainer;
 var questionPanel;
 var questionElement;
 //Clickable Buttons
@@ -463,12 +464,14 @@ function resetRoundTimer() {
   clearInterval(roundTimeInteravl);
   roundTime = timePerRound;
   timerElement.text("00:" + timePerRound);
+  timerContainer.removeClass("bg-warning bg-danger");
 }
 
 function roundCounter() {
   //Timer is zero or below
   if (roundTime <= 0) {
     //End Round(Run RoundCheck Method with unanswered parameter)
+
     endRound("unanswered");
   }
   //Timer not Expired
@@ -478,6 +481,16 @@ function roundCounter() {
 
     //Display Time
     timerElement.text(displayTime);
+    //Change background Color if time is close to zero
+    if (roundTime < 1) {
+      timerContainer.addClass("bg-danger");
+    }
+    //
+    else if (roundTime < 4) {
+      timerContainer.addClass("bg-warning");
+    } else {
+      timerContainer.removeClass("bg-warning bg-danger");
+    }
   }
 }
 
@@ -507,6 +520,7 @@ var getElements = function() {
 
   //Timer
   timerElement = $("#roundTimer");
+  timerContainer = $(".timerContainer");
 
   //Image
   solutionImage = $("solutionImage");
@@ -577,8 +591,13 @@ var newRound = function() {
   gameOverPanel.hide();
   questionPanel.show();
 
+  //Show Timer
+  timerContainer.removeClass("invisible");
+  timerContainer.addClass("visible");
+
   //clear result image
-  solutionImage.attr("src", "");
+  // solutionImage.hide();
+  solutionImage.attr("src", null);
 
   //Start Round Timer
   roundTimeInteravl = setInterval(roundCounter, 1000);
@@ -586,7 +605,7 @@ var newRound = function() {
 
 var endRound = function(_result) {
   var result;
-  //Clear Round Timer, Reset Round timer to 30 and display
+  //Clear Round Timer, Reset Round timer and display
   resetRoundTimer();
   //Check if Result is Correct Answer or unanswered, set result on question object
   if (_result === "unanswered") {
@@ -610,6 +629,7 @@ var endRound = function(_result) {
     "The Correct Answer was " + currentQuestions.correctAnswer
   );
   solutionImage.attr("src", currentQuestions.image);
+  // solutionImage.show();
 
   //Show Results Panel
   resultsPanel.show();

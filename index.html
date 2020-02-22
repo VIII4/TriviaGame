@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trivia Game</title>
+    <title>Scifi Trivia Game</title>
 
     <!-- Bootstrap -->
     <link
@@ -31,7 +31,9 @@
       <header>
         <div class="row mb-2 p-3">
           <div class="col"></div>
-          <div class="col-4 border border-light rounded white">
+          <div
+            class="col-10 col-md-6 col-lg-4 border border-light rounded white"
+          >
             <h1 id="gameTitle" class="text-center exodarFont">
               Sci-Fi Trivia Game
             </h1>
@@ -44,103 +46,133 @@
           <div class="col "></div>
           <div
             id="wrapper"
-            class="col-8 p-1 bg-transparent border border-light rounded white"
+            class="col-10 col-md-8 p-2 mb-3 bg-transparent border border-light rounded white"
           >
-            <div class="row">
-              <div class="col"></div>
-            </div>
+            <!--Timer Row  -->
             <div class="row">
               <div class="col"></div>
               <div
-                class="col-4 col-lg-2 timerContainer border border-light rounded my-1"
+                class="col-4 col-lg-2 invisible timerContainer border border-light rounded my-1"
               >
-                <h3 id="roundTimer" class="text-center white">
+                <h3 id="roundTimer" class="text-center white  p-0 m-0">
                   00:10
                 </h3>
               </div>
               <div class="col"></div>
             </div>
             <!-- ALL GAME PANELS HERE -->
+            <div class="row"></div>
             <!-- Start -->
-            <div id="gameStartPanel" class="container p-5 panel">
+            <div id="gameStartPanel" class="container py-4 panel">
               <div class="row align-items-center justify-content-center">
                 <div class="col align-center">
-                  <h5 id="introText" class="text-center exodarFont">
-                    10 questions with 10 seconds to answer each one. Click
-                    Button Below to start, GOOD LUCK!
-                  </h5>
-                  <img
-                    src="assets/images/weppage/pngguru.com.png"
-                    id="introImage"
-                    class="img-fluid mx-auto my-2 d-block "
-                    alt="Responsive image"
-                    style="width: 400px; height: 400px;"
-                  />
-                  <button
-                    id="gameStartButton"
-                    type="button"
-                    class="btn btn-outline-success btn-lg btn-block exodarFont"
-                  >
-                    Start Game
-                  </button>
+                  <div class="row no-gutters">
+                    <div class="col">
+                      <h4 id="introText" class="text-center exodarFont">
+                        10 questions with 10 seconds to answer each one. Click
+                        Button Below to start, GOOD LUCK!
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row p-5">
+                    <!-- <img
+                      src="assets/images/weppage/pngguru.com.png"
+                      id="introImage"
+                      class="img-fluid mx-auto my-2 d-block "
+                      alt="Responsive image"
+                      style="width: 400px; height: 400px; opacity: 70%;"
+                    /> -->
+                  </div>
+                  <div class="row no-gutters">
+                    <div class="col"></div>
+                    <div class="col-10">
+                      <button
+                        id="gameStartButton"
+                        type="button"
+                        class="btn btn-outline-warning btn-lg btn-block exodarFont"
+                      >
+                        Start Game
+                      </button>
+                    </div>
+                    <div class="col"></div>
+                  </div>
                 </div>
               </div>
             </div>
             <!-- Round/Question -->
             <div
               id="questionPanel"
-              class="container p-4 panel"
+              class="container p-2 panel"
               style="display: none;"
             >
               <div class="row justify-content-center">
-                <h3 id="questionElement">What?</h3>
-                <!-- Response Buttons -->
-                <button
-                  type="button"
-                  id="answerAElement"
-                  class="btn btn-outline-secondary btn-lg btn-block"
-                >
-                  Answer A
-                </button>
-                <button
-                  type="button"
-                  id="answerBElement"
-                  class="btn btn-outline-secondary btn-lg btn-block"
-                >
-                  Answer B
-                </button>
-                <button
-                  type="button"
-                  id="answerCElement"
-                  class="btn btn-outline-secondary btn-lg btn-block"
-                >
-                  Answer C
-                </button>
-                <button
-                  type="button"
-                  id="answerDElement"
-                  class="btn btn-outline-secondary btn-lg btn-block"
-                >
-                  Answer D
-                </button>
+                <div class="col">
+                  <div class="row no-gutters">
+                    <div class="col"><h4 id="questionElement">What?</h4></div>
+                  </div>
+                  <div class="row justify-content-center no-gutters">
+                    <div class="col col-md-10">
+                      <!-- Response Buttons -->
+                      <button
+                        type="button"
+                        id="answerAElement"
+                        class=" btn btn-outline-warning btn-lg btn-block"
+                      >
+                        Answer A
+                      </button>
+                      <button
+                        type="button"
+                        id="answerBElement"
+                        class=" btn btn-outline-warning btn-lg btn-block"
+                      >
+                        Answer B
+                      </button>
+                      <button
+                        type="button"
+                        id="answerCElement"
+                        class=" btn btn-outline-warning btn-lg btn-block"
+                      >
+                        Answer C
+                      </button>
+                      <button
+                        type="button"
+                        id="answerDElement"
+                        class="btn btn-outline-warning btn-lg btn-block"
+                      >
+                        Answer D
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Round Result -->
             <div
               id="resultsPanel"
-              class="container p-5 panel"
+              class="container p-2 panel"
               style="display: none;"
             >
-              <div class="row align-items-center justify-content-center">
-                <h3 id="resultElement">Good Job!</h3>
-                <b></b>
-                <h4 id="solutionElement">The Correct Answer was:</h4>
-                <img
-                  src="assets/images/test.jpg"
-                  id="solutionImage"
-                  class="img-fluid resultImage mt-3 mb-1"
-                  alt="Responsive image"
-                />
+              <div class="row align-items-center justify-content-center tester">
+                <div class="col">
+                  <div class="row">
+                    <div class="col"><h3 id="resultElement">Good Job!</h3></div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <h4 id="solutionElement">The Correct Answer was:</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <img
+                        src="assets/images/test.jpg"
+                        id="solutionImage"
+                        class="img-fluid resultImage mt-3 mb-1"
+                        alt="Responsive image"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- Game Over -->
