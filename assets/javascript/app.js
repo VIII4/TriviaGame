@@ -847,7 +847,7 @@ var gameOver = function() {
   //Load Game results to elements (incorrect, Correct, unanswered, and final percentage)
   scoreElement.text(finalScore + "%");
   correctValueElement.text(" # Correct: " + totalCorrect);
-  incorrectValueElement.text(" # Number Incorrect: " + totalIncorrect);
+  incorrectValueElement.text(" # Incorrect: " + totalIncorrect);
   unansweredValueElement.text(" # Unanswered: " + totalUnanswered);
 
   //Reset Game
