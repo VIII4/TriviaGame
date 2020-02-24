@@ -65,9 +65,9 @@ var currentQuestions;
 
 //Results Object
 var roundResult = {
-  unanswered: "Ran out of time",
-  correct: "Nice Work",
-  incorrect: "Nope"
+  unanswered: "Took too Long!",
+  correct: "Nice Work!",
+  incorrect: "Nope!"
 };
 
 //Question Object Construct
@@ -108,8 +108,6 @@ function QuestionObject(
     this.allAnswers = temp;
   };
 }
-
-//TO DO: Create ALL question objects here
 
 var templateQuestion = new QuestionObject(
   " Question",
@@ -246,8 +244,8 @@ var questionThirteen = new QuestionObject(
   "Katherine Moennig",
   "Claire Danes",
   "Michelle Rodriguez",
-  /////////Need TX Image/////////////
-  "assets/images/test.jpg"
+
+  "assets/images/terminator3.jpg"
 );
 var questionFourteen = new QuestionObject(
   "Released in 2005, which film is a continuation of Joss Whedon's short-lived 2002 television series 'Firefly'?",
@@ -387,7 +385,7 @@ var questionTwentyseven = new QuestionObject(
   "Jurassic Park",
   "Predators",
 
-  "assetsimages\neomatrix.jpg"
+  "assets/images/neomatrix.jpg"
 );
 var questionTwentyeight = new QuestionObject(
   "'Kevin Spacey' and 'Sam Rockwell' co-star in which 2009 British science fiction film?",
@@ -420,8 +418,183 @@ var questionThirty = new QuestionObject(
   "assets/images/hastalavistaTerminator.jpg"
 );
 
+//Need Images
+var questionThirtyOne = new QuestionObject(
+  "What were the bad guys led by Deacon called in the film 'Waterworld'?",
+
+  "Smokers",
+  "Riffs",
+  "Stokers",
+  "Fins",
+
+  "assets/images/waterworld.png"
+);
+
+var questionThirtyTwo = new QuestionObject(
+  "How many of the first six Star Wars films did George Lucas direct?",
+
+  "Four",
+  "Five",
+  "Two",
+  "Six",
+
+  "assets/images/lucas.jpg"
+);
+var questionThirtyThree = new QuestionObject(
+  "Who played the role of the game show host Damon Killian in Stephen King's film 'The Running Man'?",
+
+  "Richard Dawson",
+  "Dweezil Zappa",
+  "Mick Fleetwood",
+  "Jesse Ventura",
+
+  "assets/images/runningman.jpg"
+);
+var questionThirtyFour = new QuestionObject(
+  "What film from the Mad Max series stars 'Mel Gibson' and 'Tina Turner'?",
+
+  "Mad Max - Beyond Thunderdome",
+  "Mad Max",
+  "Mad Max - Fury Road",
+  "Mad Max - The Road Warrior",
+
+  "assets/images/madmaxthunderdome.jpg"
+);
+var questionThirtyFive = new QuestionObject(
+  "Anakin Skywalker, better known as Darth Vader, is killed in which Star Wars movie?",
+
+  "Return of the Jedi",
+  "Revenge of the Sith",
+  "Empire Strikes Back",
+  "A New Hope",
+
+  "assets/images/returnofthejedi.jpeg"
+);
+var questionThirtySix = new QuestionObject(
+  "John Hammond, the billionaire, is at the center of which film?",
+
+  "Jurassic Park",
+  "Iron Man",
+  "The Matrix",
+  "Furious 7",
+
+  "assets/images/jurassicpark.jpg"
+);
+var questionThirtySeven = new QuestionObject(
+  "What is the name of the robot that is featured in the 1956 classic science fiction film 'Forbidden Planet'?",
+
+  "Robby the Robot",
+  "Clank",
+  "Sojourner",
+  "Johnny 5",
+
+  "assets/images/forbiddenplanet.jpg"
+);
+var questionThirtyEight = new QuestionObject(
+  "Which 2005 movie is a spin-off of the TV series 'Firefly'?",
+
+  "Serenity",
+  "THX 1138",
+  "The Chronicles of Riddick",
+  "Solaris",
+
+  "assets/images/sereniity.jpg"
+);
+var questionThirtyNine = new QuestionObject(
+  "Played by Roddy Piper, protagonist John Nada finds some special sunglasses that allow him to see that the world is ruled by skull-faced aliens.",
+
+  "They Live",
+  "Alien Nation",
+  "I Come in Peace",
+  "The Hidden",
+
+  "assets/images/theylive.png"
+);
+
+var questionFortyOne = new QuestionObject(
+  "Who plays the role of Captain James T. Kirk in the rebooted Star Trek films?",
+
+  "Chris Pine",
+  "Benedict Cumberbatch",
+  "Karl Urban",
+  "Zachary Quinto",
+
+  "assets/images/pinestartrek.jpg"
+);
+var questionFortyTwo = new QuestionObject(
+  "Loosely based on a short story by Philip K. Dick, who directed the 2002 hit 'Minority Report'?",
+
+  "Steven Spielberg",
+  "George Lucas",
+  "James Cameron",
+  "Francis Ford Coppola",
+
+  "assets/images/minorityreport.jpg"
+);
+var questionFortyThree = new QuestionObject(
+  "In what 1985 Sci-Fi classic do we see Dennis Quaid crash-land on a planet with an alien soldier (Louis Gossett Jr.)?",
+
+  "Enemy Mine",
+  "Red Planet",
+  "Explorers",
+  "Pitch Black",
+
+  "assets/images/enemymine.jpg"
+);
+var questionFortyFour = new QuestionObject(
+  "Which classic Sci-Fi film is based on a 1962 Anthony Burgess novel?",
+
+  "A Clockwork Orange",
+  "Invasion of the Body Snatchers",
+  "Cloverfield",
+  "Metropolis",
+
+  "assets/images/clockworkorange.jpg"
+);
+var questionFortyFive = new QuestionObject(
+  "What is the surname of the lead character in 'The Truman Show'?",
+
+  "Burbank",
+  "Rogers",
+  "Rothman",
+  "Banks",
+
+  "assets/images/trumanshow.jpeg"
+);
+var questionFortySix = new QuestionObject(
+  "In what year was the comedy Sci-Fi film 'Mars Attacks' released?",
+
+  "1996",
+  "1999",
+  "2005",
+  "2001",
+
+  "assets/images/marsattack.jpeg"
+);
+var questionFortySeven = new QuestionObject(
+  "Johnny Rico is the central character in which 1997 Sci-Fi film?",
+
+  "Starship Troopers",
+  "Independence Day",
+  "Blade Runner",
+  "Event Horizon",
+
+  "assets/images/ricostarshiptroppers.jpg"
+);
+
+var questionFortyNine = new QuestionObject(
+  "Spaceships acting as greenhouses for extinct plants are central to which 1972 Sci-Fi film?",
+
+  "Silent Running",
+  "Colossus - The Forbin Project",
+  "Futureworld",
+  "Soylent Green",
+
+  "assets/images/silentrun.jpg"
+);
+
 allQuestions = [
-  //TO DO: Store all question here
+  //Store all question here
   //templateQuestion
 
   questionOne,
@@ -453,7 +626,24 @@ allQuestions = [
   questionTwentyseven,
   questionTwentyeight,
   questionTwentynine,
-  questionThirty
+  questionThirty,
+  questionThirtyOne,
+  questionThirtyTwo,
+  questionThirtyThree,
+  questionThirtyFour,
+  questionThirtyFive,
+  questionThirtySix,
+  questionThirtySeven,
+  questionThirtyEight,
+  questionThirtyNine,
+  questionFortyOne,
+  questionFortyTwo,
+  questionFortyThree,
+  questionFortyFour,
+  questionFortyFive,
+  questionFortySix,
+  questionFortySeven,
+  questionFortyNine
 ];
 
 //#endregion
@@ -542,13 +732,6 @@ var getElements = function() {
   unansweredValueElement = $("#unansweredValueElement");
 };
 
-var score = function(_selectedQuestions) {
-  var tally = 0;
-  for (i = 0; i < selectedQuestions.length; i++) {
-    //TO DO : check if question result true, increment tally
-  }
-};
-
 var setGame = function() {
   selectedQuestions = [];
   currentRound = 0;
@@ -562,7 +745,7 @@ var setGame = function() {
 
 var generateQuestions = function() {
   var _selectedIndex = [];
-  for (i = 0; i < 10; i++) {
+  for (i = 0; i < maxRounds; i++) {
     var random = Math.floor(Math.random() * allQuestions.length);
     if (!_selectedIndex.includes(random)) {
       selectedQuestions.push(allQuestions[random]);
@@ -576,6 +759,7 @@ var generateQuestions = function() {
 
 var newRound = function() {
   //Load Question equal to round number, randomize answers then Load and answers into elements
+
   currentQuestions = selectedQuestions[currentRound];
   currentQuestions.randomizeAnswers();
 
@@ -584,6 +768,15 @@ var newRound = function() {
   answerBElement.text(currentQuestions.allAnswers[1]);
   answerCElement.text(currentQuestions.allAnswers[2]);
   answerDElement.text(currentQuestions.allAnswers[3]);
+
+  console.log(
+    "Current Round: " +
+      (currentRound + 1) +
+      " / Current Question : " +
+      currentQuestions.question +
+      " " +
+      currentQuestions.correctAnswer
+  );
 
   //Show Question Panel, hide other panels
   gameStartPanel.hide();
@@ -626,7 +819,7 @@ var endRound = function(_result) {
   //Load result and img into ELements
   resultElement.text(result);
   solutionElement.text(
-    "The Correct Answer was " + currentQuestions.correctAnswer
+    "The correct answer is " + currentQuestions.correctAnswer
   );
   solutionImage.attr("src", currentQuestions.image);
   // solutionImage.show();
@@ -639,7 +832,6 @@ var endRound = function(_result) {
   if (currentRound < maxRounds) {
     queueTimeInterval = setTimeout(newRound, timeBetweenRound);
   } else {
-    console.log("gameOver");
     queueTimeInterval = setTimeout(gameOver, timeBetweenRound);
   }
 };
@@ -654,9 +846,9 @@ var gameOver = function() {
 
   //Load Game results to elements (incorrect, Correct, unanswered, and final percentage)
   scoreElement.text(finalScore + "%");
-  correctValueElement.text("Number of Correct: " + totalCorrect);
-  incorrectValueElement.text("Number of Incorrect: " + totalIncorrect);
-  unansweredValueElement.text("Number of Unanswered: " + totalUnanswered);
+  correctValueElement.text(" # Correct: " + totalCorrect);
+  incorrectValueElement.text(" # Number Incorrect: " + totalIncorrect);
+  unansweredValueElement.text(" # Unanswered: " + totalUnanswered);
 
   //Reset Game
   setGame();
@@ -668,8 +860,6 @@ var debugTest = function() {
   //resultsPanel.show();
   //gameOverPanel.show();
 };
-
-//TO DO: EndRound Method that recieves string from Button Click, or unaswered if timer expires, Starts queue timer to run StartRound method
 
 //#endregion
 
