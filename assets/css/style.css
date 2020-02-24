@@ -2,6 +2,16 @@ header {
   background-color: rgba(0, 0, 0, 0.342);
 }
 
+body {
+  height: 100vh;
+  width: 100vw;
+  /*IF YOU REALLY WANT TO FORCE THE ISSUE*/
+}
+.All subsequent child {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 .bg {
   background-image: url(../images/weppage/SciTechBackground.png);
   height: 100%;
